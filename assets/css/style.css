@@ -793,6 +793,8 @@ nav.container {
 
 .prt-image img {
   width: 105%;
+  position: absolute;
+  inset: 0;
 }
 
 .prt-desc {
@@ -988,6 +990,7 @@ nav.container {
 
 .client img {
   width: 100%;
+  border-radius: 50%;
 }
 
 .client-info h4 {
