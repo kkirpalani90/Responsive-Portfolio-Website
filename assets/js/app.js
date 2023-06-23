@@ -18,6 +18,10 @@ const prevBtn = document.querySelector(".prev-btn");
 
 const links = document.querySelectorAll(".nav-link");
 
+const toggleBtn = document.querySelector(".toggle-btn");
+
+const hamburgerMenu = document.querySelector(".hamburger");
+
 window.addEventListener("scroll", () => {
   activeLink();
   if (!skillsPlayed) skillsCounter();
@@ -184,4 +188,36 @@ function activeLink() {
 
 /* --------------- Change Page Theme --------------- */
 
+let initialTheme = localStorage.getItem("theme");
+
+toggleTheme(+initialTheme);
+
+function toggleTheme(isDark) {
+  if (isDark) {
+    document.body.classList.add("dark");
+    toggleBtn.classList.replace("uil-moon", "uil-sun");
+    localStorage.setItem("theme", 1);
+  } else {
+    document.body.classList.remove("dark");
+    toggleBtn.classList.replace("uil-sun", "uil-moon");
+    localStorage.setItem("theme", 0);
+  }
+}
+
+toggleBtn.addEventListener("click", () => {
+  toggleTheme(!document.body.classList.contains("dark"));
+});
+
 /* --------------- Open & Close Navbar Menu --------------- */
+
+hamburgerMenu.addEventListener("click", () => {
+  document.body.classList.toggle("open");
+  document.body.classList.toggle("stopScrolling");
+});
+
+links.forEach((link) =>
+  link.addEventListener("click", () => {
+    document.body.classList.remove("open");
+    document.body.classList.remove("stopScrolling");
+  })
+);
